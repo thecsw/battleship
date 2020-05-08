@@ -141,7 +141,7 @@ game board1 board2 player1 = do
   if player1 then putStrLn "[Player 1 turn!]" else putStrLn "[Player 2 turn!]"
   if player1 then drawBoard board2 else drawBoard board1
   -- Get the x,y coordinates to attack
-  putStrLn "\nEnter x coordianate: "
+  putStrLn "\nEnter x coordinate: "
   xcord <- getLine
   putStrLn "Enter y coordinate: "
   ycord <- getLine
