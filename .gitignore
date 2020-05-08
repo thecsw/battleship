@@ -1,3 +1,4 @@
+.saves
 dist
 dist-*
 cabal-dev
