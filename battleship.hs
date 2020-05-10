@@ -132,16 +132,19 @@ gameDone board = (length (filter (\x -> x == Shot) board)) == 4
 -- game is the recursive turn-based version of playing
 game :: Board -> Board -> Bool -> IO Board
 game board1 board2 player1 = do
+  -- Clear screen between plays
+  putStr "\ESC[2J"
   let win1 = gameDone board2
   let win2 = gameDone board1
   -- Check if anyone won the game
   if win1 then putStrLn "\n PLAYER 1 WON!!!" else putStrLn ""
   if win2 then putStrLn "\n PLAYER 2 WON!!!" else putStrLn ""
   -- Check the current player to print greetings and board
-  if player1 then putStrLn "[Player 1 turn!]" else putStrLn "[Player 2 turn!]"
+  if player1 then putStrLn "[Player 1 turn!]\n" else putStrLn "[Player 2 turn!]\n"
+  if player1 then putStrLn "Player 2 board" else putStrLn "Player 1 board"
   if player1 then drawBoard board2 else drawBoard board1
   -- Get the x,y coordinates to attack
-  putStrLn "\nEnter x coordinate: "
+  putStrLn "\nEnter x coordianate: "
   xcord <- getLine
   putStrLn "Enter y coordinate: "
   ycord <- getLine
@@ -166,5 +169,7 @@ main = do
   -- Put the ships on a 5x5 board
   let board1 = placeShips ships1 (makeBoard 5)
   let board2 = placeShips ships2 (makeBoard 5)
+  putStrLn "Press [ENTER] to start!"
+  enter <- getLine
   -- Start the game by making player1 attack player2
   game board1 board2 True
