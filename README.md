@@ -1,3 +1,4 @@
+![battleship](./preview.png)
 
 ****Documentation****
 =====================
